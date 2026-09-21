@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Indique um contador | Argos</title>
+<link rel="icon" href="/argos-symbol-navy.svg" type="image/svg+xml">
+<style>
+  @font-face {
+    font-family: "Geist";
+    src: url("https://argosoficial.com.br/wp-content/themes/argos/assets/fonts/geist-variable.ttf") format("truetype");
+    font-weight: 100 900;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Sofia Sans Condensed";
+    src: url("https://argosoficial.com.br/wp-content/themes/argos/assets/fonts/sofia-sans-condensed-variable.ttf") format("truetype");
+    font-weight: 100 900;
+    font-display: swap;
+  }
+
+  :root {
+    --navy: #00202d;
+    --cream: #f3ebdc;
+    --pink: #c82f87;
+    --rose: #db1e62;
+    --orange: #ef762d;
+    --gold: #ff9c1a;
+    --teal: #006269;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: var(--navy);
+  }
+
+  body {
+    font-family: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .bg-radial {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 12% -10%, rgba(0, 98, 105, .55), transparent 40%),
+      radial-gradient(circle at 110% 10%, rgba(200, 47, 135, .35), transparent 45%),
+      var(--navy);
+  }
+
+  header.top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 20px 8px;
+  }
+  header.top img { height: 34px; width: auto; }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 18px 28px;
+  }
+
+  .banner {
+    width: 100%;
+    max-width: 430px;
+    background: linear-gradient(90deg, var(--rose), var(--pink));
+    border-radius: 16px;
+    padding: 12px 18px;
+    text-align: center;
+    font-family: "Sofia Sans Condensed", "Geist", sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 1.25;
+    letter-spacing: .2px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 30px rgba(219, 30, 98, .35);
+  }
+  .banner strong { color: var(--gold); }
+
+  .card {
+    width: 100%;
+    max-width: 430px;
+    background: var(--cream);
+    color: var(--navy);
+    border-radius: 22px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35);
+  }
+
+  #tela-indicacao {
+    background: var(--rose);
+    color: var(--cream);
+  }
+
+  #tela-indicacao h1 { color: var(--cream); }
+  #tela-indicacao h1 em { color: var(--gold); }
+  #tela-indicacao p.sub { color: rgba(243,235,220,.82); }
+  #tela-indicacao label { color: var(--cream); }
+  #tela-indicacao .eyebrow { color: var(--gold); }
+
+  #tela-indicacao .counter { color: var(--cream); }
+  #tela-indicacao .counter .num { background: var(--gold); color: var(--navy); }
+
+  #tela-indicacao .saved-flash {
+    background: rgba(243,235,220,.15);
+    border-color: rgba(243,235,220,.4);
+    color: var(--cream);
+  }
+
+  #tela-indicacao .foot-link button { color: rgba(243,235,220,.75); }
+
+  #tela-indicacao button.cta {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 0 0 4px;
+  }
+
+  h1 {
+    font-family: "Sofia Sans Condensed", "Geist", sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 1.08;
+    margin: 0 0 8px;
+  }
+  h1 em { font-style: normal; color: var(--rose); }
+
+  p.sub {
+    margin: 0 0 22px;
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: rgba(0,32,45,.72);
+  }
+
+  label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin: 16px 0 6px;
+    color: var(--navy);
+  }
+
+  input {
+    width: 100%;
+    border: 1.5px solid rgba(0,32,45,.18);
+    background: var(--white);
+    border-radius: 12px;
+    padding: 13px 14px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--navy);
+    outline: none;
+    transition: border-color .15s ease;
+  }
+  input:focus { border-color: var(--rose); }
+
+  button.cta {
+    width: 100%;
+    margin-top: 22px;
+    border: none;
+    border-radius: 999px;
+    min-height: 52px;
+    background: var(--rose);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 750;
+    letter-spacing: .2px;
+    cursor: pointer;
+    transition: transform .18s ease, filter .18s ease;
+  }
+  button.cta:active { transform: scale(.98); }
+  button.cta:disabled { opacity: .55; cursor: default; }
+
+  .foot-link {
+    text-align: center;
+    margin-top: 16px;
+  }
+  .foot-link button {
+    background: none;
+    border: none;
+    color: rgba(0,32,45,.5);
+    font-size: 12.5px;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 4px 0 20px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .counter .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: var(--teal);
+    color: var(--cream);
+    font-size: 15px;
+  }
+
+  .saved-flash {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 98, 105, .12);
+    border: 1px solid rgba(0, 98, 105, .3);
+    color: var(--teal);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .saved-flash.show { display: flex; }
+
+  .error {
+    display: none;
+    color: #b3123f;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+  .error.show { display: block; }
+
+  footer {
+    text-align: center;
+    padding: 10px 20px 24px;
+    font-size: 11px;
+    color: rgba(243,235,220,.35);
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="bg-radial"></div>
+
+<header class="top">
+  <img src="/argos-cream.svg" alt="Argos">
+</header>
+
+<main>
+  <div class="banner">
+    Quem indicar mais contadores nos <strong>próximos 10 minutos</strong> ganha uma Alexa 🎁
+  </div>
+
+  <!-- TELA 1: dados de quem indica -->
+  <section id="tela-indicador" class="card">
+    <h1>Indique um <em>contador</em> parceiro</h1>
+    <p class="sub">Coloque seus dados uma única vez. Depois é só indicar quantos contadores quiser.</p>
+
+    <form id="form-indicador">
+      <label for="ind-nome">Seu nome</label>
+      <input id="ind-nome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar">
+
+      <label for="ind-whats">Seu WhatsApp</label>
+      <input id="ind-whats" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(62) 90000-0000">
+
+      <button class="cta" type="submit">Começar a indicar</button>
+      <p class="error" id="erro-indicador">Preencha os dois campos para continuar.</p>
+    </form>
+  </section>
+
+  <!-- TELA 2: indicação de contador, repetível -->
+  <section id="tela-indicacao" class="card hidden">
+    <p class="eyebrow" id="saudacao">Valendo, <span id="nome-indicador"></span> 👋</p>
+    <h1>Indique um <em>contador</em></h1>
+    <p class="sub">Salve quantas indicações quiser. Cada uma conta ponto pra Alexa.</p>
+
+    <div class="counter">
+      Suas indicações: <span class="num" id="minhas-indicacoes">0</span>
+    </div>
+
+    <div class="saved-flash" id="flash-salvo">✓ Indicação salva! Pode indicar outro.</div>
+
+    <form id="form-indicacao">
+      <label for="empresa">Nome da empresa</label>
+      <input id="empresa" name="empresa" type="text" required placeholder="Nome do escritório/empresa">
+
+      <label for="contato">Com quem falar</label>
+      <input id="contato" name="contato" type="text" required placeholder="Nome do contador(a) ou responsável">
+
+      <label for="whatsapp-contato">WhatsApp do contador</label>
+      <input id="whatsapp-contato" name="whatsapp" type="tel" inputmode="tel" required placeholder="(62) 90000-0000">
+
+      <button class="cta" type="submit" id="btn-salvar">Salvar</button>
+      <p class="error" id="erro-indicacao">Preencha todos os campos.</p>
+    </form>
+
+    <div class="foot-link">
+      <button type="button" id="btn-trocar">Não sou eu, trocar pessoa</button>
+    </div>
+  </section>
+</main>
+
+<footer>Argos · Plataforma de Inteligência Fiscal</footer>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const supabase = createClient(
+  'https://vawotmgdmcjtluqrflrx.supabase.co',
+  'sb_publishable_LoaNLvOapZT6v-3vvNsIlg_-qsW1-DN'
+);
+
+const STORAGE_KEY = 'argos:dia-contador:indicador';
+
+const telaIndicador = document.getElementById('tela-indicador');
+const telaIndicacao = document.getElementById('tela-indicacao');
+const formIndicador = document.getElementById('form-indicador');
+const formIndicacao = document.getElementById('form-indicacao');
+const erroIndicador = document.getElementById('erro-indicador');
+const erroIndicacao = document.getElementById('erro-indicacao');
+const nomeIndicadorSpan = document.getElementById('nome-indicador');
+const contadorSpan = document.getElementById('minhas-indicacoes');
+const flashSalvo = document.getElementById('flash-salvo');
+const btnSalvar = document.getElementById('btn-salvar');
+const btnTrocar = document.getElementById('btn-trocar');
+
+let minhasIndicacoes = 0;
+
+function getIndicador() {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+
+function setIndicador(data) {
+  try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+}
+
+function clearIndicador() {
+  try { sessionStorage.removeItem(STORAGE_KEY); } catch {}
+}
+
+function mostrarTelaIndicacao(indicador) {
+  nomeIndicadorSpan.textContent = indicador.nome.split(' ')[0];
+  telaIndicador.classList.add('hidden');
+  telaIndicacao.classList.remove('hidden');
+  document.getElementById('empresa').focus();
+}
+
+function mostrarTelaIndicador() {
+  telaIndicacao.classList.add('hidden');
+  telaIndicador.classList.remove('hidden');
+  formIndicador.reset();
+  document.getElementById('ind-nome').focus();
+}
+
+const existente = getIndicador();
+if (existente) mostrarTelaIndicacao(existente);
+
+formIndicador.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  erroIndicador.classList.remove('show');
+
+  const nome = formIndicador.nome.value.trim();
+  const whatsapp = formIndicador.whatsapp.value.trim();
+  if (!nome || !whatsapp) {
+    erroIndicador.classList.add('show');
+    return;
+  }
+
+  const submitBtn = formIndicador.querySelector('button');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Enviando...';
+
+  const id = crypto.randomUUID();
+  const { error } = await supabase
+    .from('dia_contador_indicadores')
+    .insert({ id, nome, whatsapp });
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Começar a indicar';
+
+  if (error) {
+    erroIndicador.textContent = 'Deu erro ao salvar. Tenta de novo.';
+    erroIndicador.classList.add('show');
+    return;
+  }
+
+  minhasIndicacoes = 0;
+  contadorSpan.textContent = '0';
+  const indicador = { id, nome };
+  setIndicador(indicador);
+  mostrarTelaIndicacao(indicador);
+});
+
+formIndicacao.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  erroIndicacao.classList.remove('show');
+  flashSalvo.classList.remove('show');
+
+  const indicador = getIndicador();
+  if (!indicador) {
+    mostrarTelaIndicador();
+    return;
+  }
+
+  const empresa = formIndicacao.empresa.value.trim();
+  const contato = formIndicacao.contato.value.trim();
+  const whatsapp = formIndicacao.whatsapp.value.trim();
+  if (!empresa || !contato || !whatsapp) {
+    erroIndicacao.classList.add('show');
+    return;
+  }
+
+  btnSalvar.disabled = true;
+  btnSalvar.textContent = 'Salvando...';
+
+  const { error } = await supabase
+    .from('dia_contador_indicacoes')
+    .insert({ indicador_id: indicador.id, empresa, contato, whatsapp });
+
+  btnSalvar.disabled = false;
+  btnSalvar.textContent = 'Salvar';
+
+  if (error) {
+    erroIndicacao.textContent = 'Deu erro ao salvar. Tenta de novo.';
+    erroIndicacao.classList.add('show');
+    return;
+  }
+
+  minhasIndicacoes += 1;
+  contadorSpan.textContent = String(minhasIndicacoes);
+  formIndicacao.reset();
+  document.getElementById('empresa').focus();
+  flashSalvo.classList.add('show');
+  setTimeout(() => flashSalvo.classList.remove('show'), 2200);
+});
+
+btnTrocar.addEventListener('click', () => {
+  clearIndicador();
+  mostrarTelaIndicador();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indique e ganhe uma Alexa | Argos — Dia do Contador</title>
+<link rel="icon" href="/argos-symbol-navy.svg" type="image/svg+xml">
+<style>
+  @font-face {
+    font-family: "Geist";
+    src: url("https://argosoficial.com.br/wp-content/themes/argos/assets/fonts/geist-variable.ttf") format("truetype");
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: "Sofia Sans Condensed";
+    src: url("https://argosoficial.com.br/wp-content/themes/argos/assets/fonts/sofia-sans-condensed-variable.ttf") format("truetype");
+    font-weight: 100 900;
+  }
+  :root {
+    --navy: #00202d;
+    --cream: #f3ebdc;
+    --pink: #c82f87;
+    --rose: #db1e62;
+    --orange: #ef762d;
+    --gold: #ff9c1a;
+    --teal: #006269;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--navy);
+  }
+  body {
+    font-family: "Geist", system-ui, sans-serif;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .poster {
+    width: 100%;
+    max-width: 900px;
+    background: var(--navy);
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  }
+  .poster::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 8% 6%, rgba(0, 98, 105, .55), transparent 42%),
+      radial-gradient(circle at 100% 0%, rgba(200, 47, 135, .4), transparent 45%);
+    pointer-events: none;
+  }
+  .inner {
+    position: relative;
+    padding: 48px 48px 40px;
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .brand-row {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .brand-row img { height: 30px; }
+  .brand-row span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(243,235,220,.55);
+    font-weight: 700;
+  }
+  h1 {
+    font-family: "Sofia Sans Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1.02;
+    margin: 6px 0 14px;
+  }
+  h1 em { font-style: normal; color: var(--gold); }
+  p.lead {
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(243,235,220,.8);
+    margin: 0 0 26px;
+    max-width: 420px;
+  }
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .steps div {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14.5px;
+    color: rgba(243,235,220,.85);
+  }
+  .steps b {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--rose);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .qr-box {
+    background: var(--cream);
+    border-radius: 22px;
+    padding: 22px;
+    text-align: center;
+  }
+  .qr-box img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto 14px;
+  }
+  .qr-box strong {
+    display: block;
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .qr-box small {
+    display: block;
+    color: var(--teal);
+    font-size: 12px;
+    margin-top: 2px;
+    word-break: break-all;
+  }
+  .prize-bar {
+    grid-column: 1 / -1;
+    background: linear-gradient(90deg, var(--rose), var(--pink));
+    border-radius: 16px;
+    padding: 14px 20px;
+    text-align: center;
+    font-family: "Sofia Sans Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: .2px;
+  }
+  .prize-bar b { color: var(--gold); }
+
+  @media (max-width: 720px) {
+    .inner { grid-template-columns: 1fr; padding: 32px 24px; }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <div class="inner">
+      <div class="brand-row">
+        <img src="/argos-cream.svg" alt="Argos">
+      </div>
+
+      <div>
+        <h1>Indique um <em>contador</em><br>parceiro</h1>
+        <p class="lead">Escaneie o QR, deixe seu contato e indique quantos contadores quiser. Simples assim.</p>
+        <div class="steps">
+          <div><b>1</b> Escaneie o QR Code aqui do lado</div>
+          <div><b>2</b> Coloque seu nome e WhatsApp</div>
+          <div><b>3</b> Indique nome da empresa e com quem falar</div>
+          <div><b>4</b> Salvou, indica outro. Sem limite.</div>
+        </div>
+      </div>
+
+      <div class="qr-box">
+        <img src="/qr-argos-indicacoes.png" alt="QR Code para indicar contadores">
+        <strong>Aponte a câmera do celular</strong>
+        <small>argos-indicacoes.vercel.app</small>
+      </div>
+
+      <div class="prize-bar">
+        Quem indicar mais nos <b>próximos 10 minutos</b> ganha uma Alexa
+      </div>
+    </div>
+  </div>
+</body>
+</html>

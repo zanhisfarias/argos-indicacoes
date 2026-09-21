@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Placar ao vivo | Argos — Dia do Contador</title>
+<link rel="icon" href="/argos-symbol-navy.svg" type="image/svg+xml">
+<style>
+  @font-face {
+    font-family: "Geist";
+    src: url("https://argosoficial.com.br/wp-content/themes/argos/assets/fonts/geist-variable.ttf") format("truetype");
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: "Sofia Sans Condensed";
+    src: url("https://argosoficial.com.br/wp-content/themes/argos/assets/fonts/sofia-sans-condensed-variable.ttf") format("truetype");
+    font-weight: 100 900;
+  }
+  :root {
+    --navy: #00202d;
+    --cream: #f3ebdc;
+    --pink: #c82f87;
+    --rose: #db1e62;
+    --orange: #ef762d;
+    --gold: #ff9c1a;
+    --teal: #006269;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--navy);
+  }
+  body {
+    font-family: "Geist", system-ui, sans-serif;
+    color: var(--cream);
+    min-height: 100vh;
+    padding: 40px 24px;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 10% 0%, rgba(0, 98, 105, .5), transparent 40%),
+      radial-gradient(circle at 100% 15%, rgba(200, 47, 135, .35), transparent 45%),
+      var(--navy);
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  header img { height: 30px; }
+  header span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(243,235,220,.55);
+    font-weight: 700;
+  }
+
+  h1 {
+    font-family: "Sofia Sans Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 18px 0 4px;
+    text-align: center;
+  }
+  h1 em { font-style: normal; color: var(--gold); }
+  p.sub {
+    text-align: center;
+    color: rgba(243,235,220,.7);
+    font-size: 14.5px;
+    margin: 0 0 30px;
+  }
+
+  .champion {
+    background: linear-gradient(135deg, var(--rose), var(--pink));
+    border-radius: 22px;
+    padding: 26px 28px;
+    text-align: center;
+    margin-bottom: 22px;
+    box-shadow: 0 20px 50px rgba(219,30,98,.35);
+  }
+  .champion .label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .champion .nome {
+    font-family: "Sofia Sans Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1.05;
+  }
+  .champion .total {
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(255,255,255,.9);
+  }
+
+  .list {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 10px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    color: var(--navy);
+  }
+  .row + .row { margin-top: 2px; }
+  .row.top1 { background: rgba(255,156,26,.18); }
+  .row.top2 { background: rgba(0,98,105,.1); }
+  .row.top3 { background: rgba(200,47,135,.1); }
+
+  .pos {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .row.top1 .pos { background: var(--gold); color: var(--navy); }
+  .row.top2 .pos { background: var(--teal); }
+  .row.top3 .pos { background: var(--pink); }
+
+  .nome-row {
+    flex: 1;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .total-row {
+    flex: 0 0 auto;
+    font-family: "Sofia Sans Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--rose);
+  }
+  .total-row small {
+    font-family: "Geist", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(0,32,45,.55);
+    margin-left: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(0,32,45,.55);
+    font-size: 14px;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 11.5px;
+    color: rgba(243,235,220,.4);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="/argos-cream.svg" alt="Argos">
+    </header>
+
+    <h1>Placar de <em>indicações</em></h1>
+    <p class="sub">Atualiza sozinho a cada 4 segundos</p>
+
+    <div id="champion-box"></div>
+
+    <div class="list" id="lista">
+      <div class="empty">Aguardando as primeiras indicações...</div>
+    </div>
+
+    <footer>Argos · Plataforma de Inteligência Fiscal</footer>
+  </div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const supabase = createClient(
+  'https://vawotmgdmcjtluqrflrx.supabase.co',
+  'sb_publishable_LoaNLvOapZT6v-3vvNsIlg_-qsW1-DN'
+);
+
+const championBox = document.getElementById('champion-box');
+const lista = document.getElementById('lista');
+
+async function atualizar() {
+  const { data, error } = await supabase.rpc('dia_contador_ranking', { limit_n: 15 });
+  if (error || !data || data.length === 0) return;
+
+  const [primeiro, ...resto] = data;
+
+  championBox.innerHTML = `
+    <div class="champion">
+      <div class="label">🏆 Na liderança</div>
+      <div class="nome">${escapeHtml(primeiro.nome)}</div>
+      <div class="total">${primeiro.total} ${primeiro.total == 1 ? 'indicação' : 'indicações'}</div>
+    </div>
+  `;
+
+  lista.innerHTML = data.map((row, idx) => {
+    const posClass = idx === 0 ? 'top1' : idx === 1 ? 'top2' : idx === 2 ? 'top3' : '';
+    return `
+      <div class="row ${posClass}">
+        <div class="pos">${idx + 1}</div>
+        <div class="nome-row">${escapeHtml(row.nome)}</div>
+        <div class="total-row">${row.total}<small>indic.</small></div>
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+atualizar();
+setInterval(atualizar, 4000);
+</script>
+</body>
+</html>
